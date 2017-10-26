@@ -17,9 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Juan Albarracin
- */
+
+* 
 public class EmpleadoDAO {
       private Connection connection;
       public EmpleadoDAO()
