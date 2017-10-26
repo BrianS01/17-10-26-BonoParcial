@@ -5,7 +5,7 @@
  */
 package com.daniel.controller;
 
-import com.daniel.dao.DaoEmpleado;
+import com.daniel.dao.EmpleadoDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,12 +26,12 @@ public class EmpleadoController extends HttpServlet {
      private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/Empleado.jsp";
     private static String LIST_USER = "/Listempleado.jsp";
-    private DaoEmpleado dao;
+    private EmpleadoDAO dao;
     
     public EmpleadoController()
     {
         super();
-        dao = new DaoEmpleado();
+        dao = new EmpleadoDAO();
     }
     
     

@@ -7,7 +7,7 @@ package com.daniel.dao;
 
 import com.daniel.model.Empleado;
 
-import com.daniel.util.DbUtil;
+import conexion.DbUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,9 +20,9 @@ import java.util.List;
  *
  * @author Juan Albarracin
  */
-public class DaoEmpleado {
+public class EmpleadoDAO {
       private Connection connection;
-      public DaoEmpleado()
+      public EmpleadoDAO()
     {
         connection = DbUtil.getConnection();
     }
