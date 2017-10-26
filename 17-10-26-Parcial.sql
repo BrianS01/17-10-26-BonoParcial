@@ -100,8 +100,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`empleado` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+insert into empleado(cedula,nombre,lugarNacimiento,estatus,fechaIngreso) values ('12','jose rojas' ,'culiacan','activo','2012-07-01');
+select * from empleado;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+insert into empleado(cedula,nombre,lugarNacimiento,estatus,fechaIngreso) values ('12','jose rojas' ,'culiacan','activo','2012-07-01');
+select * from empleado;
