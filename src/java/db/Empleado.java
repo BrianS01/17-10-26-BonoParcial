@@ -3,46 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.daniel.model;
+package db;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import java.util.Date;
-
-/**
- *
- * @author Juan Albarracin
- */
-public class Empleado {
-  int num_empleado;
-  int cedula;
-  String nombre;
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-  String lugarnacimiento;
-  String Status;
-  Date fechai;
-  int id_sueldo;
-  int id_departamento;
-  int id_contrarto;
-
-    @Override
-    public String toString() {
-        return "Empleado{" + "num_empleado=" + num_empleado + ", cedula=" + cedula + ", lugarnacimiento=" + lugarnacimiento + ", Status=" + Status + ", fechai=" + fechai + ", id_sueldo=" + id_sueldo + ", id_departamento=" + id_departamento + ", nombre=" + nombre+ ", id_contrarto=" + id_contrarto + '}';
-    }
-
-    public int getNum_empleado() {
-        return num_empleado;
-    }
-
-    public void setNum_empleado(int num_empleado) {
-        this.num_empleado = num_empleado;
-    }
+public class Empleado 
+{
+    private int cedula;
+    private int nombre;
+    private int lugarNacimiento;
+    private int estatus;
+    private int fechaIngreso;
+    private int idSalario;
+    private int idDepartamento;
+    private int idContrato;
 
     public int getCedula() {
         return cedula;
@@ -52,54 +24,64 @@ public class Empleado {
         this.cedula = cedula;
     }
 
-    public String getLugarnacimiento() {
-        return lugarnacimiento;
+    public int getNombre() {
+        return nombre;
     }
 
-    public void setLugarnacimiento(String lugarnacimiento) {
-        this.lugarnacimiento = lugarnacimiento;
+    public void setNombre(int nombre) {
+        this.nombre = nombre;
     }
 
-    public String getStatus() {
-        return Status;
+    public int getLugarNacimiento() {
+        return lugarNacimiento;
     }
 
-    public void setStatus(String Status) {
-        this.Status = Status;
+    public void setLugarNacimiento(int lugarNacimiento) {
+        this.lugarNacimiento = lugarNacimiento;
     }
 
-    public Date getFechai() {
-        return fechai;
+    public int getEstatus() {
+        return estatus;
     }
 
-    public void setFechai(Date fechai) {
-        this.fechai = fechai;
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
     }
 
-    public int getId_sueldo() {
-        return id_sueldo;
+    public int getFechaIngreso() {
+        return fechaIngreso;
     }
 
-    public void setId_sueldo(int id_sueldo) {
-        this.id_sueldo = id_sueldo;
+    public void setFechaIngreso(int fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
     }
 
-    public int getId_departamento() {
-        return id_departamento;
+    public int getIdSalario() {
+        return idSalario;
     }
 
-    public void setId_departamento(int id_departamento) {
-        this.id_departamento = id_departamento;
+    public void setIdSalario(int idSalario) {
+        this.idSalario = idSalario;
     }
 
-    public int getId_contrarto() {
-        return id_contrarto;
+    public int getIdDepartamento() {
+        return idDepartamento;
     }
 
-    public void setId_contrarto(int id_contrarto) {
-        this.id_contrarto = id_contrarto;
+    public void setIdDepartamento(int idDepartamento) {
+        this.idDepartamento = idDepartamento;
     }
-  
-  
-  
+
+    public int getIdContrato() {
+        return idContrato;
+    }
+
+    public void setIdContrato(int idContrato) {
+        this.idContrato = idContrato;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "cedula=" + cedula + ", nombre=" + nombre + ", lugarNacimiento=" + lugarNacimiento + ", estatus=" + estatus + ", fechaIngreso=" + fechaIngreso + ", idSalario=" + idSalario + ", idDepartamento=" + idDepartamento + ", idContrato=" + idContrato + '}';
+    }
 }

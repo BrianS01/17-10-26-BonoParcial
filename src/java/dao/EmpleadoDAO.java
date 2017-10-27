@@ -5,9 +5,8 @@
  */
 package dao;
 
-import com.daniel.model.Empleado;
-
 import conexion.DbUtil;
+import db.Empleado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,44 +15,115 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Juan Albarracin
- */
-public class EmpleadoDAO {
-      private Connection connection;
-      public EmpleadoDAO()
+public class EmpleadoDAO
+{
+    private Connection connection;
+
+    public EmpleadoDAO()
     {
         connection = DbUtil.getConnection();
     }
-      
-      public List<Empleado> getAllempleados()
+
+    public void addUser(Empleado user)
     {
-        List<Empleado> empleados = new ArrayList<Empleado>();
         try
         {
-            System.out.println("LLegue hasta aca");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into empleado(cedula,nombre,lugarNacimiento,estatus,fechaIngreso,idSalario,idDepartamento,idContrato) values (?, ?, ?, ?, ?, ?, ?, ?)");
+            // Parameters start with 1
+            preparedStatement.setInt(1, user.getIdParafiscales());
+            preparedStatement.setInt(2, user.getIcbf());
+            preparedStatement.setInt(3, user.getCajaCompensacion());
+            preparedStatement.setInt(4, user.getSena());
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteUser(int idParafiscales)
+    {
+        try
+        {
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from parafiscales where idParafiscales=?");
+            // Parameters start with 1
+            preparedStatement.setInt(1, idParafiscales);
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateUser(Empleado user)
+    {
+        try 
+        {
+            PreparedStatement preparedStatement = connection.prepareStatement("update parafiscales set sena=?, icbf=?, cajaCompensacion=?" + "where idParafiscales=?");
+            // Parameters start with 1
+            preparedStatement.setInt(1, user.getIdParafiscales());
+            preparedStatement.setInt(2, user.getIcbf());
+            preparedStatement.setInt(3, user.getCajaCompensacion());
+            preparedStatement.setInt(4, user.getSena());
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Empleado> getAllUsers()
+    {
+        List<Empleado> users = new ArrayList<Empleado>();
+        
+        try
+        {
+            System.out.println("Llegue hasta aca");
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from empleado");
+            ResultSet rs = statement.executeQuery("select * from parafiscales");
+            
             while (rs.next())
             {
-                Empleado empleado = new Empleado();
-                empleado.setCedula(rs.getInt("cedula"));
-                //empleado.setNum_empleado(rs.getInt("numeroemp"));
-                empleado.setNombre(rs.getString("nombre"));
-                empleado.setLugarnacimiento(rs.getString("lugarNacimiento"));
-               empleado.setStatus(rs.getString("estatus"));
-                empleado.setFechai(rs.getDate("fechaIngreso"));
-                // empleado.setId_contrarto(rs.getInt("idContrato"));
-                  //empleado.setId_departamento(rs.getInt("idDepartamento"));
-                   //empleado.setId_sueldo(rs.getInt("idSueldo"));
-                empleados.add(empleado);
+                Empleado user = new v();
+                user.setIdParafiscales(rs.getInt("idParafiscales"));
+                user.setSena(rs.getInt("sena"));
+                user.setIcbf(rs.getInt("icbf"));
+                user.setCajaCompensacion(rs.getInt("cajaCompensacion"));
+                users.add(user);
             }
         }
         catch (SQLException e)
         {
             e.printStackTrace();
         }
-        return empleados;
-    }   
+        return users;
+    }
+
+    public Empleado getUserById(int userId)
+    {
+        Empleado user = new Empleado();
+        
+        try
+        {
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from parafiscales where idParafiscales=?");
+            preparedStatement.setInt(1, userId);
+            ResultSet rs = preparedStatement.executeQuery();
+            
+            if (rs.next())
+            {
+                user.setIdParafiscales(rs.getInt("idParafiscales"));
+                user.setSena(rs.getInt("sena"));
+                user.setIcbf(rs.getInt("icbf"));
+                user.setCajaCompensacion(rs.getInt("cajaCompensacion"));
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return user;
+    }
 }
