@@ -5,8 +5,8 @@
  */
 package controlador;
 
-import dao.EmpleadoDAO;
-import db.Empleado;
+import dao.SalarioDAO;
+import db.Salario;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,17 +14,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class EmpleadoCon extends HttpServlet
+
+public class SalarioCon extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/user.jsp";
     private static String LIST_USER = "/listUser.jsp";
-    private EmpleadoDAO dao;
+    private SalarioDAO dao;
 
-    public EmpleadoCon()
+    public SalarioCon()
     {
         super();
-        dao = new EmpleadoDAO();
+        dao = new SalarioDAO();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -34,22 +35,22 @@ public class EmpleadoCon extends HttpServlet
         
         if (action.equalsIgnoreCase("delete"))
         {
-            int userId = Integer.parseInt(request.getParameter("idParafiscales"));
+            int userId = Integer.parseInt(request.getParameter("idSalario"));
             dao.deleteUser(userId);
             forward = LIST_USER;
-            request.setAttribute("parafiscales", dao.getAllUsers());
+            request.setAttribute("salario", dao.getAllUsers());
         }
         else if (action.equalsIgnoreCase("edit"))
         {
             forward = INSERT_OR_EDIT;
-            int userId = Integer.parseInt(request.getParameter("idParafiscales"));
-            Empleado user = dao.getUserById(userId);
+            int userId = Integer.parseInt(request.getParameter("idSalario"));
+            Salario user = dao.getUserById(userId);
             request.setAttribute("user", user);
         }
         else if (action.equalsIgnoreCase("listUser"))
         {
             forward = LIST_USER;
-            request.setAttribute("parafiscales", dao.getAllUsers());
+            request.setAttribute("salario", dao.getAllUsers());
         }
         else
         {
@@ -62,8 +63,8 @@ public class EmpleadoCon extends HttpServlet
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        Empleado user = new Empleado();
-        String userid = request.getParameter("idParafiscales");
+        Salario user = new Salario();
+        String userid = request.getParameter("idSalario");
         
         if (userid == null || userid.isEmpty())
         {
@@ -71,15 +72,23 @@ public class EmpleadoCon extends HttpServlet
         }
         else
         {
-            user.setIdParafiscales(Integer.parseInt(userid));
+            user.setIdSalario(Integer.parseInt(userid));
             dao.updateUser(user);
         }
 
-        user.setSena(request.getIntHeader("sena"));
-        user.setIcbf(request.getIntHeader("icbf"));
-        user.setCajaCompensacion(request.getIntHeader("cajaCompensacion"));
+        user.setIdSalario(request.getIntHeader("idSalario"));
+        user.setAuxilio(request.getIntHeader("auxilio"));
+        user.setPrima(request.getIntHeader("prima"));
+        user.setCesantias(request.getIntHeader("cesantias"));
+        user.setInteres(request.getIntHeader("interes"));
+        user.setVacasiones(request.getIntHeader("vacasiones"));
+        user.setSalud(request.getIntHeader("salud"));
+        user.setPension(request.getIntHeader("pension"));
+        user.setIdParafiscales(request.getIntHeader("idParafiscales"));
+        user.setSalario(request.getIntHeader("salario"));
+        user.setPago(request.getIntHeader("pago"));
         RequestDispatcher view = request.getRequestDispatcher(LIST_USER);
-        request.setAttribute("parafiscales", dao.getAllUsers());
+        request.setAttribute("salario", dao.getAllUsers());
         view.forward(request, response);
     }
 }

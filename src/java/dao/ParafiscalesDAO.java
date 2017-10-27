@@ -5,6 +5,8 @@
  */
 package dao;
 
+import conexion.DbUtil;
+import db.Parafiscales;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,8 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import db.Parafiscales;
-import conexion.DbUtil;
 
 public class ParafiscalesDAO
 {
@@ -28,7 +28,7 @@ public class ParafiscalesDAO
     {
         try
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into parafiscales(sena,icbf,cajaCompensacion) values (?, ?, ?, ? )");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into parafiscales(idParafiscales,sena,icbf,cajaCompensacion) values (?, ?, ?, ? )");
             // Parameters start with 1
             preparedStatement.setInt(1, user.getIdParafiscales());
             preparedStatement.setInt(2, user.getIcbf());
@@ -78,11 +78,13 @@ public class ParafiscalesDAO
     public List<Parafiscales> getAllUsers()
     {
         List<Parafiscales> users = new ArrayList<Parafiscales>();
+        
         try
         {
             System.out.println("Llegue hasta aca");
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from parafiscales");
+            
             while (rs.next())
             {
                 Parafiscales user = new Parafiscales();
@@ -103,11 +105,13 @@ public class ParafiscalesDAO
     public Parafiscales getUserById(int userId)
     {
         Parafiscales user = new Parafiscales();
+        
         try
         {
             PreparedStatement preparedStatement = connection.prepareStatement("select * from parafiscales where idParafiscales=?");
             preparedStatement.setInt(1, userId);
             ResultSet rs = preparedStatement.executeQuery();
+            
             if (rs.next())
             {
                 user.setIdParafiscales(rs.getInt("idParafiscales"));

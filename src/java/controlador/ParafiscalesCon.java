@@ -5,14 +5,14 @@
  */
 package controlador;
 
+import dao.ParafiscalesDAO;
+import db.Parafiscales;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.ParafiscalesDAO;
-import db.Parafiscales;
 
 public class ParafiscalesCon extends HttpServlet
 {
@@ -31,6 +31,7 @@ public class ParafiscalesCon extends HttpServlet
     {
         String forward = "";
         String action = request.getParameter("action");
+        
         if (action.equalsIgnoreCase("delete"))
         {
             int userId = Integer.parseInt(request.getParameter("idParafiscales"));

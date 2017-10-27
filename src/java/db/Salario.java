@@ -19,6 +19,7 @@ public class Salario
     private int vacasiones;
     private int salud;
     private int pension;
+    private int idParafiscales;
     private int salario;
     private int pago;
 
@@ -86,6 +87,14 @@ public class Salario
         this.pension = pension;
     }
 
+    public int getIdParafiscales() {
+        return idParafiscales;
+    }
+
+    public void setIdParafiscales(int idParafiscales) {
+        this.idParafiscales = idParafiscales;
+    }
+
     public int getSalario() {
         return salario;
     }
@@ -103,7 +112,8 @@ public class Salario
     }
 
     @Override
-    public String toString() {
-        return "Salario{" + "idSalario=" + idSalario + ", auxilio=" + auxilio + ", prima=" + prima + ", cesantias=" + cesantias + ", interes=" + interes + ", vacasiones=" + vacasiones + ", salud=" + salud + ", pension=" + pension + ", salario=" + salario + ", pago=" + pago + '}';
+    public String toString()
+    {
+        return "Salario{" + "idSalario=" + idSalario + ", auxilio=" + auxilio + ", prima=" + prima + ", cesantias=" + cesantias + ", interes=" + interes + ", vacasiones=" + vacasiones + ", salud=" + salud + ", pension=" + pension + ", idParafiscales=" + idParafiscales + ", salario=" + salario + ", pago=" + pago + '}';
     }
 }

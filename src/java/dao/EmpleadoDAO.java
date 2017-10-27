@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.daniel.dao;
+package dao;
 
 import com.daniel.model.Empleado;
 
@@ -17,8 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-
-* 
+ *
+ * @author Juan Albarracin
+ */
 public class EmpleadoDAO {
       private Connection connection;
       public EmpleadoDAO()
@@ -54,23 +55,5 @@ public class EmpleadoDAO {
             e.printStackTrace();
         }
         return empleados;
-    }
-
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+    }   
 }
